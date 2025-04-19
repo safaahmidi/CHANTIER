@@ -40,5 +40,16 @@ class Project extends Model
     {
         return $this->hasMany(SafetyCheck::class);
     }
+    public function phases()
+    {
+        return $this->hasMany(Phase::class);
+    }
+
+    
+
+public function safetyMeasures()
+    {
+        return $this->hasMany(SafetyMeasure::class);
+    }
 
 }

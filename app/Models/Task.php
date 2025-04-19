@@ -50,4 +50,10 @@ class Task extends Model
     {
         return $this->belongsTo(Project::class);
     }
+
+
+    public function phase()
+    {
+        return $this->belongsTo(Phase::class);
+    }
 }

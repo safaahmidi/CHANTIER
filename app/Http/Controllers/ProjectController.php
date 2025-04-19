@@ -32,6 +32,7 @@ class ProjectController extends Controller
             'budget_total' => 'nullable|numeric',
             'avanceClient' => 'nullable|numeric',
             'email' => 'required|email',
+           
         ]);
 
         $userId = auth()->id();  // L'utilisateur connecté
@@ -48,6 +49,7 @@ class ProjectController extends Controller
         $project->avanceClient = $request->avanceClient;
         $project->user_id = $userId;
         $project->email = $request->email;
+       
         $project->save();
 
         return redirect()->route('dashboard');
@@ -76,6 +78,7 @@ class ProjectController extends Controller
             'budget_total' => 'required|numeric',
             'avanceClient' => 'required|numeric',
             'email' => 'required|email',
+           
         ]);
 
         $project = Project::findOrFail($id);

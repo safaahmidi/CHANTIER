@@ -12,6 +12,9 @@ export default function AuthenticatedLayout({ header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] =
         useState(false);
 
+        const isAdmin = user.role === 'admin'; // Assurez-vous que votre modèle User a un champ 'role'
+
+
     return (
        
         <div className="min-h-screen bg-gray-100">
@@ -37,13 +40,32 @@ export default function AuthenticatedLayout({ header, children }) {
                                 <NavLink
                                     href={route('dashboard')}
                                     active={route().current('dashboard')}
-                                     className="text-slate-50 hover:text-yellow-400 active:text-white"
+                                     className="text-white hover:text-yellow-400 "
                                      
                                     
                                 >
                                     Projets
                                 </NavLink>
-                               
+                                {/* <NavLink
+                                    href={route('afficher-contact')}
+                                    active={route().current('afficher-contact')}
+                                     className="text-white hover:text-yellow-400 "
+                                     
+                                    
+                                >
+                                    Contacts
+                                </NavLink> */}
+                                 {/* Afficher le lien Contacts seulement pour les admins */}
+                                {/* Afficher le lien Contacts seulement pour les admins */}
+                                {isAdmin && (
+                                    <NavLink
+                                        href={route('afficher-contact')}
+                                        active={route().current('afficher-contact')}
+                                        className="text-white hover:text-yellow-400"
+                                    >
+                                        Contacts
+                                    </NavLink>
+                                )}
     
                             </div>
                           
@@ -170,13 +192,14 @@ export default function AuthenticatedLayout({ header, children }) {
                             <ResponsiveNavLink href={route('profile.edit')}>
                                 Profile
                             </ResponsiveNavLink>
-                            <ResponsiveNavLink
-                                method="post"
+                            {/* <ResponsiveNavLink
+                                // method="get"
                                 href={route('logout')}
-                                as="button"
+                                // as="button"
                             >
                                 Log Out
-                            </ResponsiveNavLink>
+                            </ResponsiveNavLink> */}
+                            <Link href={route('logout') } method='get' >Log Out</Link>
                         </div>
                     </div>
                 </div>
